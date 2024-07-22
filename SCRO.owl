@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/scro#"
+     xml:base="http://example.org/scro"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+    <owl:Ontology rdf:about="http://example.org/scro">
+        <rdfs:comment>Supply Chain Reference Ontology (SCRO)</rdfs:comment>
+        <rdfs:label>SCRO Ontology</rdfs:label>
+    </owl:Ontology>
+
+    <!-- Top-Level Ontology (BFO) Concepts -->
+    <owl:Class rdf:about="#Continuant">
+        <rdfs:label>Continuant</rdfs:label>
+        <rdfs:comment>An entity that continues to exist through time while maintaining its identity.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MaterialEntity">
+        <rdfs:subClassOf rdf:resource="#Continuant"/>
+        <rdfs:label>Material Entity</rdfs:label>
+        <rdfs:comment>A continuant entity that includes some portion of matter.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Organization">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Organization</rdfs:label>
+        <rdfs:comment>A material entity that represents an organization.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Person">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Person</rdfs:label>
+        <rdfs:comment>A material entity that represents a person.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Agent">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Agent</rdfs:label>
+        <rdfs:comment>A material entity that acts as an agent.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Supplier">
+        <rdfs:subClassOf rdf:resource="#Agent"/>
+        <rdfs:label>Supplier</rdfs:label>
+        <rdfs:comment>An agent that supplies products or services.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Customer">
+        <rdfs:subClassOf rdf:resource="#Agent"/>
+        <rdfs:label>Customer</rdfs:label>
+        <rdfs:comment>An agent that purchases products or services.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ObjectAggregate">
+        <rdfs:subClassOf rdf:resource="#Continuant"/>
+        <rdfs:label>Object Aggregate</rdfs:label>
+        <rdfs:comment>A collection of objects.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SupplyChain">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Supply Chain</rdfs:label>
+        <rdfs:comment>A set of organizations involved in trading and other business relationships.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Factory">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Factory</rdfs:label>
+        <rdfs:comment>An aggregate of manufacturing resources.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ManufacturingResource">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Manufacturing Resource</rdfs:label>
+        <rdfs:comment>A resource used in manufacturing.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#EngineeredSystem">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Engineered System</rdfs:label>
+        <rdfs:comment>An engineered system, such as a factory or supply chain system.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SpecificallyDependentContinuant">
+        <rdfs:subClassOf rdf:resource="#Continuant"/>
+        <rdfs:label>Specifically Dependent Continuant</rdfs:label>
+        <rdfs:comment>A continuant that depends on other entities.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Role">
+        <rdfs:subClassOf rdf:resource="#SpecificallyDependentContinuant"/>
+        <rdfs:label>Role</rdfs:label>
+        <rdfs:comment>A role that an entity can play in a certain context.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SupplierRole">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+        <rdfs:label>Supplier Role</rdfs:label>
+        <rdfs:comment>A role inhering in an agent that supplies products or services.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#CustomerRole">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+        <rdfs:label>Customer Role</rdfs:label>
+        <rdfs:comment>A role inhering in an agent that purchases products or services.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SupplyChainMemberRole">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+        <rdfs:label>Supply Chain Member Role</rdfs:label>
+        <rdfs:comment>A role inhering in an agent that participates in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MaterialProviderRole">
+        <rdfs:subClassOf rdf:resource="#SupplyChainMemberRole"/>
+        <rdfs:label>Material Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing materials in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ComponentProviderRole">
+        <rdfs:subClassOf rdf:resource="#SupplyChainMemberRole"/>
+        <rdfs:label>Component Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing components in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ServiceProviderRole">
+        <rdfs:subClassOf rdf:resource="#SupplyChainMemberRole"/>
+        <rdfs:label>Service Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing services in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MachiningServiceProviderRole">
+        <rdfs:subClassOf rdf:resource="#ServiceProviderRole"/>
+        <rdfs:label>Machining Service Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing machining services in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#CastingServiceProviderRole">
+        <rdfs:subClassOf rdf:resource="#ServiceProviderRole"/>
+        <rdfs:label>Casting Service Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing casting services in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#TransportationServiceProviderRole">
+        <rdfs:subClassOf rdf:resource="#ServiceProviderRole"/>
+        <rdfs:label>Transportation Service Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing transportation services in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#TestingServiceProviderRole">
+        <rdfs:subClassOf rdf:resource="#ServiceProviderRole"/>
+        <rdfs:label>Testing Service Provider Role</rdfs:label>
+        <rdfs:comment>A role of providing testing services in a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Capability">
+        <rdfs:subClassOf rdf:resource="#SpecificallyDependentContinuant"/>
+        <rdfs:label>Capability</rdfs:label>
+        <rdfs:comment>A potential that an entity can develop under certain conditions.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ManufacturingCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Manufacturing Capability</rdfs:label>
+        <rdfs:comment>The ability to manufacture products.</rdfs:comment>
+    </owl:Class>
+        <owl:Class rdf:about="#ProductionCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Production Capability</rdfs:label>
+        <rdfs:comment>The ability to produce goods.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#OrganizationalCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Organizational Capability</rdfs:label>
+        <rdfs:comment>The ability of an organization to perform certain functions.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SurfaceRoughnessCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Surface Roughness Capability</rdfs:label>
+        <rdfs:comment>The capability related to the surface roughness that can be achieved.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MaterialCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Material Capability</rdfs:label>
+        <rdfs:comment>The capability to handle different materials.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ProcessCapability">
+        <rdfs:subClassOf rdf:resource="#Capability"/>
+        <rdfs:label>Process Capability</rdfs:label>
+        <rdfs:comment>The capability to perform different processes.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Function">
+        <rdfs:subClassOf rdf:resource="#SpecificallyDependentContinuant"/>
+        <rdfs:label>Function</rdfs:label>
+        <rdfs:comment>A function that an entity can perform.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MachiningFunction">
+        <rdfs:subClassOf rdf:resource="#Function"/>
+        <rdfs:label>Machining Function</rdfs:label>
+        <rdfs:comment>The function of performing machining operations.</rdfs:comment>
+    </owl:Class>
+
+    <!-- Mid-Level Ontologies (CCO) Concepts -->
+    <owl:Class rdf:about="#GroupOfOrganizations">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Group of Organizations</rdfs:label>
+        <rdfs:comment>A group of organizations.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Agent">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Agent</rdfs:label>
+        <rdfs:comment>An entity that can perform actions.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Organization">
+        <rdfs:subClassOf rdf:resource="#Agent"/>
+        <rdfs:label>Organization</rdfs:label>
+        <rdfs:comment>An entity that represents an organization.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Person">
+        <rdfs:subClassOf rdf:resource="#Agent"/>
+        <rdfs:label>Person</rdfs:label>
+        <rdfs:comment>An entity that represents a person.</rdfs:comment>
+    </owl:Class>
+
+    <!-- SCRO Specific Concepts -->
+    <owl:Class rdf:about="#SupplyChainMaterialEntities">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Supply Chain Material Entities</rdfs:label>
+        <rdfs:comment>Entities related to the material aspects of a supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#PieceOfEquipment">
+        <rdfs:subClassOf rdf:resource="#ManufacturingResource"/>
+        <rdfs:label>Piece of Equipment</rdfs:label>
+        <rdfs:comment>An individual piece of equipment used in manufacturing.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MachiningEquipment">
+        <rdfs:subClassOf rdf:resource="#PieceOfEquipment"/>
+        <rdfs:label>Machining Equipment</rdfs:label>
+        <rdfs:comment>Equipment used for machining processes.</rdfs:comment>
+    </owl:Class>
+
+    <!-- Network Representation of Supply Chains -->
+    <owl:Class rdf:about="#ActOfShipment">
+        <rdfs:subClassOf rdf:resource="#Occurrent"/>
+        <rdfs:label>Act of Shipment</rdfs:label>
+        <rdfs:comment>An act of shipping materials between entities in the supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ActOfCommunication">
+        <rdfs:subClassOf rdf:resource="#Occurrent"/>
+        <rdfs:label>Act of Communication</rdfs:label>
+        <rdfs:comment>An act of communicating information between entities in the supply chain.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#InformationEntity">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Information Entity</rdfs:label>
+        <rdfs:comment>An entity that represents information.</rdfs:comment>
+    </owl:Class>
+
+    <!-- Other Relevant Concepts -->
+    <owl:Class rdf:about="#EngineeredSystem">
+        <rdfs:subClassOf rdf:resource="#ObjectAggregate"/>
+        <rdfs:label>Engineered System</rdfs:label>
+        <rdfs:comment>An engineered system such as a factory or supply chain system.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Artifact">
+        <rdfs:subClassOf rdf:resource="#MaterialEntity"/>
+        <rdfs:label>Artifact</rdfs:label>
+        <rdfs:comment>An object made by a human being, typically one of cultural or historical interest.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#Component">
+        <rdfs:subClassOf rdf:resource="#Artifact"/>
+        <rdfs:label>Component</rdfs:label>
+        <rdfs:comment>A part or element of a larger whole, especially a part of a machine or vehicle.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#MachineEquipment">
+        <rdfs:subClassOf rdf:resource="#Artifact"/>
+        <rdfs:label>Machine Equipment</rdfs:label>
+        <rdfs:comment>Equipment used for manufacturing or processing materials.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#ManufacturingMachine">
+        <rdfs:subClassOf rdf:resource="#MachineEquipment"/>
+        <rdfs:label>Manufacturing Machine</rdfs:label>
+        <rdfs:comment>A machine used in the manufacturing process.</rdfs:comment>
+    </owl:Class>
+    <owl:Class rdf:about="#SupplyChainSystem">
+        <rdfs:subClassOf rdf:resource="#EngineeredSystem"/>
+        <rdfs:label>Supply Chain System</rdfs:label>
+        <rdfs:comment>A system comprising various components of a supply chain.</rdfs:comment>
+    </owl:Class>
+
+
+    <!-- Data Properties -->
+    <owl:DatatypeProperty rdf:about="#hasSurfaceRoughness">
+        <rdfs:label>has surface roughness</rdfs:label>
+        <rdfs:comment>Relates an entity to its surface roughness capability.</rdfs:comment>
+        <rdfs:domain rdf:resource="#MachiningEquipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#hasMaterialType">
+        <rdfs:label>has material type</rdfs:label>
+        <rdfs:comment>Relates an entity to the type of material it can process.</rdfs:comment>
+        <rdfs:domain rdf:resource="#MachiningEquipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#hasProcessType">
+        <rdfs:label>has process type</rdfs:label>
+        <rdfs:comment>Relates an entity to the type of process it can perform.</rdfs:comment>
+        <rdfs:domain rdf:resource="#MachiningEquipment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    <owl:DatatypeProperty rdf:about="#hasProductionCapacity">
+        <rdfs:label>has production capacity</rdfs:label>
+        <rdfs:comment>Relates an entity to its production capacity.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Factory"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+
+
+
+    <!-- Individuals -->
+    <owl:NamedIndividual rdf:about="#Supplier1">
+        <rdf:type rdf:resource="#Supplier"/>
+        <rdfs:label>Supplier 1</rdfs:label>
+        <hasRole rdf:resource="#SupplierRole"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="#Customer1">
+        <rdf:type rdf:resource="#Customer"/>
+        <rdfs:label>Customer 1</rdfs:label>
+        <hasRole rdf:resource="#CustomerRole"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="#Factory1">
+        <rdf:type rdf:resource="#Factory"/>
+        <rdfs:label>Factory 1</rdfs:label>
+        <hasProductionCapacity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1000</hasProductionCapacity>
+        <hasPart rdf:resource="#Machine1"/>
+        <hasPart rdf:resource="#Machine2"/>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="#Machine1">
+        <rdf:type rdf:resource="#MachiningEquipment"/>
+        <rdfs:label>Machine 1</rdfs:label>
+        <hasSurfaceRoughness rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</hasSurfaceRoughness>
+        <hasMaterialType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aluminum</hasMaterialType>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="#Machine2">
+        <rdf:type rdf:resource="#MachiningEquipment"/>
+        <rdfs:label>Machine 2</rdfs:label>
+        <hasSurfaceRoughness rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</hasSurfaceRoughness>
+        <hasMaterialType rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Steel</hasMaterialType>
+    </owl:NamedIndividual>
+
+    <!-- Object Properties -->
+    <owl:ObjectProperty rdf:about="#hasRole">
+        <rdfs:label>has role</rdfs:label>
+        <rdfs:comment>Relates an agent to a role it plays.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Agent"/>
+        <rdfs:range rdf:resource="#Role"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#participatesIn">
+        <rdfs:label>participates in</rdfs:label>
+        <rdfs:comment>Relates an entity to an event or process it participates in.</rdfs:comment>
+        <rdfs:domain rdf:resource="#MaterialEntity"/>
+        <rdfs:range rdf:resource="#Occurrent"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#hasCapability">
+        <rdfs:label>has capability</rdfs:label>
+        <rdfs:comment>Relates an entity to a capability it has.</rdfs:comment>
+        <rdfs:domain rdf:resource="#MaterialEntity"/>
+        <rdfs:range rdf:resource="#Capability"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#hasPart">
+        <rdfs:label>has part</rdfs:label>
+        <rdfs:comment>Relates an aggregate entity to its parts.</rdfs:comment>
+        <rdfs:domain rdf:resource="#ObjectAggregate"/>
+        <rdfs:range rdf:resource="#MaterialEntity"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#sends">
+        <rdfs:label>sends</rdfs:label>
+        <rdfs:comment>Relates an agent to an act of communication it initiates.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Agent"/>
+        <rdfs:range rdf:resource="#ActOfCommunication"/>
+    </owl:ObjectProperty>
+    <owl:ObjectProperty rdf:about="#receives">
+        <rdfs:label>receives</rdfs:label>
+        <rdfs:comment>Relates an agent to an act of communication it receives.</rdfs:comment>
+        <rdfs:domain rdf:resource="#Agent"/>
+        <rdfs:range rdf:resource="#ActOfCommunication"/>
+    </owl:ObjectProperty>
+
+    <!-- Disjoint Classes -->
+    <owl:Class rdf:about="#Supplier">
+        <owl:disjointWith rdf:resource="#Customer"/>
+    </owl:Class>
+    <owl:Class rdf:about="#SupplierRole">
+        <owl:disjointWith rdf:resource="#CustomerRole"/>
+    </owl:Class>
+    <owl:Class rdf:about="#MachiningServiceProviderRole">
+        <owl:disjointWith rdf:resource="#CastingServiceProviderRole"/>
+        <owl:disjointWith rdf:resource="#TransportationServiceProviderRole"/>
+        <owl:disjointWith rdf:resource="#TestingServiceProviderRole"/>
+    </owl:Class>
+
+
+    <!-- Relationships -->
+    <rdf:Description rdf:about="#Supplier1">
+        <hasRole rdf:resource="#SupplierRole"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Customer1">
+        <hasRole rdf:resource="#CustomerRole"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="#Factory1">
+        <hasPart rdf:resource="#Machine1"/>
+        <hasPart rdf:resource="#Machine2"/>
+    </rdf:Description>
+
+</rdf:RDF>
+
+
